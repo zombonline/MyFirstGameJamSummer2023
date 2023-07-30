@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Wheel : MonoBehaviour
 {
-    [SerializeField] int portions = 8;
+    [SerializeField] public int portions = 8;
     [SerializeField] public int actionsRemaining, currentScore, targetScore;
     float rotationAmount, targetRotation;
     [SerializeField] Portion currentPortion;
@@ -105,6 +105,7 @@ public class Wheel : MonoBehaviour
             FindObjectOfType<LevelLoader>().ResetLevel();
             gameCanvas.UpdateCanvasText(actionsRemaining, currentScore, targetScore);
             wheelToRotate.transform.eulerAngles = Vector3.zero;
+            spinDirection = 1;
         }
     }
 

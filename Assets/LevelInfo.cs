@@ -8,7 +8,6 @@ public struct SegmentSetup
 {
     public PortionPowerType powerType;
     public int powerAmount;
-    public Sprite sprite;
 }
 [CreateAssetMenu(fileName = "New Level Info", menuName = "Level Info")]
 

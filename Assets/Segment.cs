@@ -26,6 +26,21 @@ public class Segment : MonoBehaviour
         originalParent = transform.parent;
 
         sliceSprite.sprite = sliceThree;
+        switch(FindObjectOfType<Wheel>().portions)
+        {
+            case 3:
+                sliceSprite.sprite = sliceThree;
+                break;
+            case 5:
+                sliceSprite.sprite = sliceFive;
+                break;
+            case 8:
+                sliceSprite.sprite = sliceEight;
+                break;
+
+        }
+            
+
         switch (powerType)
         {
             case PortionPowerType.Addition:
