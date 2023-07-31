@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+
+    //This script will contain some custom logic to be used by the UI. Some ui components need to be enabled by other scripts and not buttons
+    //so methods for doing so will be here aswell as some custom button logic such as resetting game progress.
     [SerializeField] GameObject wndwResetProgressWarning,wndwResults;
     [SerializeField] Volume volume;
     [SerializeField] TextAsset hintTextFile;
@@ -15,11 +18,10 @@ public class Menu : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI textHint;
 
-    private void Start()
+    private void Awake()
     {
         hints = hintTextFile.text.Split(Environment.NewLine,
                             StringSplitOptions.RemoveEmptyEntries);
-        LoadHint();
     }
     public void ResetProgress()
     {
@@ -59,13 +61,16 @@ public class Menu : MonoBehaviour
         }
     }
 
+
+   
     public void OpenResultsScreen()
     { 
+        //public method to enable a UI component, made public to be used by another script (The wheel when a spin is over and the player has won).
         wndwResults.SetActive(true);
     }
-    public void LoadHint()
+    public void LoadHint(string hint)
     {
-        var hint = FindObjectOfType<LevelLoader>().levels[LevelLoader.LoadProgress()].hint;
+        //if the hint passed in is empty, a random hint from a text file will be used in it's place.
         if (hint == "")
         {
             hint = hints[UnityEngine.Random.Range(0, hints.Length)];
