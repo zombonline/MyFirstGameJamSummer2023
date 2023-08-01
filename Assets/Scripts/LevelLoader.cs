@@ -59,7 +59,7 @@ public class LevelLoader : MonoBehaviour
     private void ClearAllLevelPieces()
     {
         //check level pieces exist.
-        if (levelPieces.Count > 0) {return;}
+        if (levelPieces.Count <= 0) {return;}
         //Destroy them if they do.
         foreach (var piece in levelPieces)
         {

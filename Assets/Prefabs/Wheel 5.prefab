@@ -1063,6 +1063,8 @@ MonoBehaviour:
   currentPortion: {fileID: 5397003119824886719}
   wheelToRotate: {fileID: 8394295410366794362}
   spinDirection: 1
+  spriteWheelClockwise: {fileID: 21300000, guid: 0f34cfad7b3841c4984fb46df8e96a97, type: 3}
+  spriteWheelAnticlockwise: {fileID: 21300000, guid: 0be07d768bcabd443b4e471e9c506856, type: 3}
 --- !u!61 &6174832753012491762
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652a7ec84a0bdde43af46b0312e2e73b, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  targetScore: 2
+  targetScore: 17
   actions: 3
   segments:
   - powerType: 0
-    powerAmount: 4
+    powerAmount: 9
   - powerType: 1
-    powerAmount: 3
-  - powerType: 0
     powerAmount: 1
+  - powerType: 0
+    powerAmount: 9
   wheel: {fileID: 2780269951372395478, guid: 37f8d0eb7b114a14ebe8f2a4d4de8075, type: 3}
   hint: Green segments will add their value to your current number while red segments
     will subtract their value!

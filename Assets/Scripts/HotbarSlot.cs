@@ -39,7 +39,7 @@ public class HotbarSlot : MonoBehaviour
     private void CopySegmentAbilityColor()
     {
         //change slot background color to match the segment color.
-        tileSprite.color = storedSegment.sliceSprite.color;
+        tileSprite.color = storedSegment.sliceSpriteRenderer.color;
     }
 
     private void AssignNumberSprite()

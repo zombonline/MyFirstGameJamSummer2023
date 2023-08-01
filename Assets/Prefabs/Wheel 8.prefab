@@ -2321,6 +2321,8 @@ MonoBehaviour:
   currentPortion: {fileID: 9077387760629738310}
   wheelToRotate: {fileID: 7636524098576575655}
   spinDirection: 1
+  spriteWheelClockwise: {fileID: 0}
+  spriteWheelAnticlockwise: {fileID: 0}
 --- !u!61 &6141404478076050985
 BoxCollider2D:
   m_ObjectHideFlags: 0

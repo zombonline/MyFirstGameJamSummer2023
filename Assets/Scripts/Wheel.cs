@@ -14,10 +14,19 @@ public class Wheel : MonoBehaviour
     [SerializeField] public int spinDirection = 1;
     bool isSpinning;
 
+    [SerializeField] Sprite spriteWheelClockwise, spriteWheelAnticlockwise;
+
     private void Start()
     {
         UpdateTargetRotation();
         FindObjectOfType<GameCanvas>().UpdateCanvasText(actionsRemaining, currentScore, targetScore);
+    }
+
+    public void ToggleDirection()
+    {
+        spinDirection = -spinDirection;
+        if(spinDirection == -1) { wheelToRotate.GetComponent<SpriteRenderer>().sprite = spriteWheelClockwise; }
+        else if(spinDirection == 1) { wheelToRotate.GetComponent<SpriteRenderer>().sprite = spriteWheelAnticlockwise; }
     }
 
     private void UpdateTargetRotation()
@@ -77,6 +86,7 @@ public class Wheel : MonoBehaviour
             UpdateTargetRotation();
         }
         //once actions remaining reaches 0, the 'SpinOver' method is run.
+        yield return new WaitForSeconds(1f);
         SpinOver();
     }
 
@@ -98,6 +108,7 @@ public class Wheel : MonoBehaviour
         {
             FindObjectOfType<LevelLoader>().LoadLevelInformation(); //reset current level information
             FindObjectOfType<GameCanvas>().UpdateCanvasText(actionsRemaining, currentScore, targetScore); //update ui to show current level info has been reset.
+            FindObjectOfType<GameCanvas>().ResetCurrentScore();
             wheelToRotate.transform.eulerAngles = Vector3.zero; //return wheel to original rotation
             spinDirection = 1; //return spin direction back to original direction.
         }

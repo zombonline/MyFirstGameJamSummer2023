@@ -16,56 +16,79 @@ public class Segment : MonoBehaviour
     public Transform originalParent;
     [SerializeField] public PortionPowerType powerType;
     [SerializeField] public int powerAmount = 1;
-    [SerializeField] public SpriteRenderer abilitySprite, sliceSprite;
-    [SerializeField] Sprite sliceThree, sliceFive, sliceEight;
+    [SerializeField] public SpriteRenderer valueSpriteRenderer;
+    [SerializeField] public SpriteRenderer sliceSpriteRenderer;
     [SerializeField] Color[] colors;
-    [SerializeField] Sprite[] valueSprites;
-    
+    [SerializeField] Sprite[] valueSprites, sliceSprites;
     private void Start()
     {
         originalParent = transform.parent;
 
-        sliceSprite.sprite = sliceThree;
-        switch(FindObjectOfType<Wheel>().portions)
-        {
-            case 3:
-                sliceSprite.sprite = sliceThree;
-                break;
-            case 5:
-                sliceSprite.sprite = sliceFive;
-                break;
-            case 8:
-                sliceSprite.sprite = sliceEight;
-                break;
+        if (powerAmount > 0) { valueSpriteRenderer.sprite = valueSprites[powerAmount - 1]; }
+        sliceSpriteRenderer.sprite = GetCorrectSizeSliceSprite();
+        AssignValueSpriteRendererSize();
+        AssignSliceColour();
 
-        }
-            
-
-        switch (powerType)
-        {
-            case PortionPowerType.Addition:
-                sliceSprite.color = colors[0]; 
-                abilitySprite.sprite = valueSprites[powerAmount - 1];
-                break;
-            case PortionPowerType.Subtraction:
-                sliceSprite.color = colors[1];
-                abilitySprite.sprite = valueSprites[powerAmount - 1];
-                break;
-            case PortionPowerType.Multiplication:
-                sliceSprite.color = colors[2];
-                abilitySprite.sprite = valueSprites[powerAmount - 1];
-                break;
-            case PortionPowerType.Division:
-                sliceSprite.color = colors[3];
-                abilitySprite.sprite = valueSprites[powerAmount - 1];
-                break;
-            case PortionPowerType.Ability:
-                sliceSprite.color = colors[4];
-                break;
-        }
         CheckParent();
 
     }
+
+    private void AssignValueSpriteRendererSize()
+    {
+        switch (FindObjectOfType<Wheel>().portions)
+        {
+            case 3:
+                valueSpriteRenderer.transform.localScale = Vector3.one;
+                break;
+            case 5:
+                valueSpriteRenderer.transform.localScale = Vector3.one * .75f;
+                break;
+            case 8:
+                valueSpriteRenderer.transform.localScale = Vector3.one * .5f;
+                break;
+        }
+    }
+
+    private void AssignSliceColour()
+    {
+        switch (powerType)
+        {
+            case PortionPowerType.Addition:
+                sliceSpriteRenderer.color = colors[0];
+                break;
+            case PortionPowerType.Subtraction:
+                sliceSpriteRenderer.color = colors[1];
+                break;
+            case PortionPowerType.Multiplication:
+                sliceSpriteRenderer.color = colors[2];
+                break;
+            case PortionPowerType.Division:
+                sliceSpriteRenderer.color = colors[3];
+                break;
+            case PortionPowerType.Ability:
+                sliceSpriteRenderer.color = colors[4];
+                break;
+        }
+    }
+
+    private Sprite GetCorrectSizeSliceSprite()
+    {
+        Sprite spriteToReturn = null; 
+        switch (FindObjectOfType<Wheel>().portions)
+        {
+            case 3:
+                spriteToReturn = sliceSprites[0];
+                break;
+            case 5:
+                spriteToReturn = sliceSprites[1];
+                break;
+            case 8:
+                spriteToReturn = sliceSprites[2];
+                break;
+        }
+        return spriteToReturn;
+    }
+
     public int ApplySegmentPower(int currentAmount)
     {
         int newAmount = currentAmount;
@@ -84,7 +107,7 @@ public class Segment : MonoBehaviour
                 newAmount /= powerAmount;
                 break;
             case PortionPowerType.Ability:
-                FindObjectOfType<Wheel>().spinDirection = -FindObjectOfType<Wheel>().spinDirection;
+                FindObjectOfType<Wheel>().ToggleDirection();
                 break;
         }
 
@@ -164,23 +187,25 @@ public class Segment : MonoBehaviour
         originalParent.GetComponent<HotbarSlot>().CheckSegment();
         if (transform.parent == originalParent)
         {
-            sliceSprite.enabled = false;
-            abilitySprite.enabled = false;
+            sliceSpriteRenderer.enabled = false;
+            valueSpriteRenderer.enabled = false;
             if (GetComponent<PolygonCollider2D>() != null)
             {
-                Destroy(sliceSprite.gameObject.GetComponent<PolygonCollider2D>());
+                Destroy(sliceSpriteRenderer.gameObject.GetComponent<PolygonCollider2D>());
             }
-            sliceSprite.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            sliceSpriteRenderer.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
         else
         {
             originalParent.GetComponent<SpriteRenderer>().color = Color.white;
-            sliceSprite.enabled = true;
+            sliceSpriteRenderer.enabled = true;
+            valueSpriteRenderer.enabled = true;
+
             if (GetComponent<PolygonCollider2D>() == null)
             {
-                sliceSprite.gameObject.AddComponent<PolygonCollider2D>();
+                sliceSpriteRenderer.gameObject.AddComponent<PolygonCollider2D>();
             }
-            sliceSprite.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            sliceSpriteRenderer.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }
