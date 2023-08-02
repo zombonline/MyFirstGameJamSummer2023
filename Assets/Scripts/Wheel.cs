@@ -76,7 +76,7 @@ public class Wheel : MonoBehaviour
             while (Mathf.FloorToInt(wheelToRotate.eulerAngles.z) != targetRotation)
             {                
                 wheelToRotate.eulerAngles = new Vector3(0, 0, wheelToRotate.eulerAngles.z + spinDirection);
-                yield return new WaitForSeconds(.025f);
+                yield return new WaitForSeconds(.0125f);
             }
             //when wheel is spun to target rotation, it checks if portion contains a segment.
             if (currentPortion.GetComponentInChildren<Segment>())

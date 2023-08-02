@@ -13,15 +13,14 @@ public class HotbarSlot : MonoBehaviour
     [SerializeField] Sprite[] numberSprites;
     [SerializeField] Sprite reverseDirectionSprite, skipNextSegmentSprite;
 
-    Segment storedSegment;
+    public Segment storedSegment;
 
     public void CheckSegment()
     {
-        //check if a segment is stored inside the slot.
-        storedSegment = transform.GetComponentInChildren<Segment>();
 
+        Debug.Log(storedSegment.transform.parent == this.transform);
         //if a segment is stored, use the info from that segment and assign the slots information.
-        if (storedSegment != null)
+        if (storedSegment.transform.parent == this.transform)
         {
             AssignFunctionAndNumberToText();
             AssignNumberSprite();
@@ -30,10 +29,15 @@ public class HotbarSlot : MonoBehaviour
         //if a segment is NOT stored, remove all information and display a blank slot.
         else
         {
-            numberSprite.sprite = null;
-            tileSprite.color = Color.white;
-            numberText.text = string.Empty;
+            EmptySlot();
         }
+    }
+
+    public void EmptySlot()
+    {
+        numberSprite.sprite = null;
+        tileSprite.color = Color.white;
+        numberText.text = string.Empty;
     }
 
     private void CopySegmentAbilityColor()
@@ -88,6 +92,10 @@ public class HotbarSlot : MonoBehaviour
         if (storedSegment.powerAmount > 0)
         {
             numberText.text = numberText.text + storedSegment.powerAmount.ToString();
+        }
+        else
+        {
+            numberText.text = "";
         }
     }
 }

@@ -26,6 +26,7 @@ public class Segment : MonoBehaviour
     {
         originalParent = transform.parent;
 
+
         if (powerAmount > 0) { valueSpriteRenderer.sprite = valueSprites[powerAmount - 1]; }
         else 
         {
@@ -224,5 +225,10 @@ public class Segment : MonoBehaviour
             }
             sliceSpriteRenderer.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        originalParent.GetComponent<HotbarSlot>().EmptySlot();
     }
 }

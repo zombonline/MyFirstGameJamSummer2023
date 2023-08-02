@@ -21,8 +21,8 @@ public class LevelLoader : MonoBehaviour
     {
         //all currently active wheels and segments are destroyed and then new ones loaded by accessing the current level using playerprefs.
         ClearAllLevelPieces();
-        SpawnWheel();
-        SpawnSegments();
+        Invoke(nameof(SpawnWheel), .1f);
+        Invoke(nameof(SpawnSegments), .1f);
         FindObjectOfType<Menu>().LoadHint(levels[LevelLoader.LoadProgress()].hint);
     }
 
@@ -40,6 +40,7 @@ public class LevelLoader : MonoBehaviour
             newSegmentPrefab.powerAmount = levels[LoadProgress()].segments[i].powerAmount;
 
             //tell the hotbar slot to check its segment and display the information.
+            hotbarSlots[i].storedSegment= newSegmentPrefab;
             hotbarSlots[i].CheckSegment();
 
             //add each segment to the level pieces list to allow them all to be destroyed on a new level load.
@@ -65,6 +66,7 @@ public class LevelLoader : MonoBehaviour
         {
             Destroy(piece);
         }
+        
     }
 
     public void LoadLevelInformation()
