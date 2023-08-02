@@ -11,7 +11,7 @@ public class HotbarSlot : MonoBehaviour
     [SerializeField] public SpriteRenderer numberSprite, tileSprite;
     [SerializeField] TextMeshPro numberText;
     [SerializeField] Sprite[] numberSprites;
-    [SerializeField] Sprite reverseDirectionSprite;
+    [SerializeField] Sprite reverseDirectionSprite, skipNextSegmentSprite;
 
     Segment storedSegment;
 
@@ -54,8 +54,11 @@ public class HotbarSlot : MonoBehaviour
         {
             switch (storedSegment.powerType)
             {
-                case PortionPowerType.Ability:
+                case PortionPowerType.ReverseDirection:
                     numberSprite.sprite = reverseDirectionSprite;
+                    break;
+                case PortionPowerType.SkipNextSegment:
+                    numberSprite.sprite = skipNextSegmentSprite;
                     break;
             }
         }
@@ -78,7 +81,7 @@ public class HotbarSlot : MonoBehaviour
             case PortionPowerType.Division:
                 numberText.text = "÷";
                 break;
-            case PortionPowerType.Ability:
+            case PortionPowerType.ReverseDirection:
                 break;
         }
         //if the stored segment's number is greater than 0, add its value to the string.

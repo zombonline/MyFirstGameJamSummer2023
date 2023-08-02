@@ -8,7 +8,8 @@ public enum PortionPowerType
     Subtraction,
     Multiplication,
     Division,
-    Ability
+    ReverseDirection,
+    SkipNextSegment
 }
 public class Segment : MonoBehaviour
 {
@@ -19,12 +20,24 @@ public class Segment : MonoBehaviour
     [SerializeField] public SpriteRenderer valueSpriteRenderer;
     [SerializeField] public SpriteRenderer sliceSpriteRenderer;
     [SerializeField] Color[] colors;
-    [SerializeField] Sprite[] valueSprites, sliceSprites;
+    [SerializeField] Sprite[] valueSprites, sliceSprites, abilitySprites;
+    
     private void Start()
     {
         originalParent = transform.parent;
 
         if (powerAmount > 0) { valueSpriteRenderer.sprite = valueSprites[powerAmount - 1]; }
+        else 
+        {
+            if(powerType == PortionPowerType.ReverseDirection)
+            {
+                valueSpriteRenderer.sprite = abilitySprites[0];
+            } 
+            else if(powerType == PortionPowerType.SkipNextSegment)
+            {
+                valueSpriteRenderer.sprite = abilitySprites[1];
+            }
+        }
         sliceSpriteRenderer.sprite = GetCorrectSizeSliceSprite();
         AssignValueSpriteRendererSize();
         AssignSliceColour();
@@ -65,7 +78,7 @@ public class Segment : MonoBehaviour
             case PortionPowerType.Division:
                 sliceSpriteRenderer.color = colors[3];
                 break;
-            case PortionPowerType.Ability:
+            default:
                 sliceSpriteRenderer.color = colors[4];
                 break;
         }
@@ -106,9 +119,13 @@ public class Segment : MonoBehaviour
             case PortionPowerType.Division:
                 newAmount /= powerAmount;
                 break;
-            case PortionPowerType.Ability:
+            case PortionPowerType.ReverseDirection:
                 FindObjectOfType<Wheel>().ToggleDirection();
                 break;
+            case PortionPowerType.SkipNextSegment:
+                FindObjectOfType<Wheel>().skipNextSegment = true;
+                break;
+
         }
 
         return newAmount;

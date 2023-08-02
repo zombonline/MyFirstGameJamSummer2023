@@ -77,6 +77,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 076872432519cac4ab39a2dd3aa057dc, type: 3}
   - {fileID: 21300000, guid: b0c06be5beaa90b4a999877788a3e09a, type: 3}
   - {fileID: 21300000, guid: 70312f55696e95042adf4d4b661c0c0f, type: 3}
+  abilitySprites:
+  - {fileID: 21300000, guid: 04f1f8c22732cf842a7c4ae48892211b, type: 3}
+  - {fileID: 21300000, guid: 501ae9e3e380ebc49beedda2f0d668f0, type: 3}
 --- !u!50 &3930036706859344507
 Rigidbody2D:
   serializedVersion: 4

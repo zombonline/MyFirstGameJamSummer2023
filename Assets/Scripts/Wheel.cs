@@ -16,6 +16,8 @@ public class Wheel : MonoBehaviour
 
     [SerializeField] Sprite spriteWheelClockwise, spriteWheelAnticlockwise;
 
+    public bool skipNextSegment = false;
+
     private void Start()
     {
         UpdateTargetRotation();
@@ -79,8 +81,15 @@ public class Wheel : MonoBehaviour
             //when wheel is spun to target rotation, it checks if portion contains a segment.
             if (currentPortion.GetComponentInChildren<Segment>())
             {
-                CheckSlice();
-                yield return new WaitForSeconds(1f);
+                if (!skipNextSegment)
+                {
+                    CheckSlice();
+                    yield return new WaitForSeconds(1f);
+                }
+                else
+                {
+                    skipNextSegment = false;
+                }
             }
             //target rotation updated using full rotation amount this time.
             UpdateTargetRotation();

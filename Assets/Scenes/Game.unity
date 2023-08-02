@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
@@ -4326,7 +4326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1384010150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5780,6 +5780,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef77a8cbee0e72b4ca70909ffa1de81e, type: 2}
   - {fileID: 11400000, guid: 494eb7093c86c8b4d931d24b21c32516, type: 2}
   - {fileID: 11400000, guid: 6c99321502169f14a8623bcde66c7b14, type: 2}
+  - {fileID: 11400000, guid: bf3fdb6731131564ab829aa76084964c, type: 2}
+  - {fileID: 11400000, guid: 594c997247c1291428efbb3b91b819f0, type: 2}
+  - {fileID: 11400000, guid: 42629047eafc5d54f801fd11077d51d3, type: 2}
+  - {fileID: 11400000, guid: e8ac66c29a06e474e9d214653556c44b, type: 2}
   hotbarSlots:
   - {fileID: 1381421369}
   - {fileID: 2099679501}
@@ -5840,7 +5844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 238, y: 236}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1772779870
@@ -6358,7 +6362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -223}
+  m_AnchoredPosition: {x: 0, y: -226}
   m_SizeDelta: {x: 3840, y: 342}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1865910802
