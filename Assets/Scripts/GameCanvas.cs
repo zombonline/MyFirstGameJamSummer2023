@@ -20,9 +20,13 @@ public class GameCanvas : MonoBehaviour
 
     private void Update()
     {
-        if (!spinButton.mouseDown && !spinButton.mouseOver) { textActionsRemaining.rectTransform.localPosition = Vector3.up * 15;}
-        if (!spinButton.mouseDown && spinButton.mouseOver) { textActionsRemaining.rectTransform.localPosition = Vector3.zero; }
-        if (spinButton.mouseDown && spinButton.mouseOver) { textActionsRemaining.rectTransform.localPosition = Vector3.up * -15; }
+        if (spinButton.GetComponent<Button>().interactable)
+        {
+            if (!spinButton.mouseDown && !spinButton.mouseOver) { textActionsRemaining.rectTransform.localPosition = Vector3.up * 15; }
+            if (!spinButton.mouseDown && spinButton.mouseOver) { textActionsRemaining.rectTransform.localPosition = Vector3.zero; }
+            if (spinButton.mouseDown && spinButton.mouseOver) { textActionsRemaining.rectTransform.localPosition = Vector3.up * -15; }
+        }
+
 
     }
 

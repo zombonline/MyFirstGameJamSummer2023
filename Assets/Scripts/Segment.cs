@@ -215,7 +215,6 @@ public class Segment : MonoBehaviour
         }
         else
         {
-            originalParent.GetComponent<SpriteRenderer>().color = Color.white;
             sliceSpriteRenderer.enabled = true;
             valueSpriteRenderer.enabled = true;
 

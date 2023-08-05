@@ -36,7 +36,7 @@ public class HotbarSlot : MonoBehaviour
     public void EmptySlot()
     {
         numberSprite.sprite = null;
-        tileSprite.color = Color.white;
+        tileSprite.color = Color.clear;
         numberText.text = string.Empty;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SegmentController : MonoBehaviour
 {
@@ -40,28 +41,56 @@ public class SegmentController : MonoBehaviour
 
                     if (portionClicked.transform.childCount > 0)
                     {
-                        var segmentToSwapOut = portionClicked.transform.GetChild(0).GetComponent<Segment>();
-                        AssignSegmentInHandToTransform(portionClicked.transform);
-                        segmentInHand = segmentToSwapOut;
-                        AssignSegmentInHandToTransform(cursor);
+                        SwapWithPopulatedPortion(portionClicked);
                     }
                     else
                     {
-                        AssignSegmentInHandToTransform(portionClicked.transform);
-                        segmentInHand = null;
+                        AttachToPortion(portionClicked);
                     }
                 }
                 else
                 {
-                    AssignSegmentInHandToTransform(segmentInHand.originalParent);
-                    segmentInHand = null;
+                    ReturnToHotbar();
                 }
             }
         }
 
         if(segmentInHand != null)
         {
+            ToggleUIButtonInteractivity(false);
             RotateSegmentInHand();
+        }
+        else
+        {
+            ToggleUIButtonInteractivity(true);
+        }
+    }
+
+    private void SwapWithPopulatedPortion(Portion portionClicked)
+    {
+        var segmentToSwapOut = portionClicked.transform.GetChild(0).GetComponent<Segment>();
+        AssignSegmentInHandToTransform(portionClicked.transform);
+        segmentInHand = segmentToSwapOut;
+        AssignSegmentInHandToTransform(cursor);
+    }
+
+    private void AttachToPortion(Portion portionClicked)
+    {
+        AssignSegmentInHandToTransform(portionClicked.transform);
+        segmentInHand = null;
+    }
+
+    private void ReturnToHotbar()
+    {
+        AssignSegmentInHandToTransform(segmentInHand.originalParent);
+        segmentInHand = null;
+    }
+
+    private void ToggleUIButtonInteractivity(bool val)
+    {
+        foreach(Button button in FindObjectsOfType<Button>())
+        {
+            button.interactable = val;
         }
     }
 

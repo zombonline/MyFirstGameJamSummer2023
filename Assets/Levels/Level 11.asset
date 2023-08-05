@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652a7ec84a0bdde43af46b0312e2e73b, type: 3}
   m_Name: Level 11
   m_EditorClassIdentifier: 
-  targetScore: 0
-  actions: 8
+  targetScore: 9
+  actions: 5
   segments:
   - powerType: 0
     powerAmount: 9

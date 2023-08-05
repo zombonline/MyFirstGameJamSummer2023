@@ -18,10 +18,16 @@ public class Wheel : MonoBehaviour
 
     public bool skipNextSegment = false;
 
+
     private void Start()
     {
         UpdateTargetRotation();
         FindObjectOfType<GameCanvas>().UpdateCanvasText(actionsRemaining, currentScore, targetScore);
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void ToggleDirection()
@@ -63,8 +69,12 @@ public class Wheel : MonoBehaviour
 
     IEnumerator SpinCoroutine()
     {
+        
         //isSpinning bool set true to stop coroutine from being ran a second time.
         isSpinning = true;
+        //change music
+        FindObjectOfType<FMODController>().ChangeAnswerState(1);
+
         //Segment controll disabled to stop segments being removed from wheel while it spins.
         FindObjectOfType<SegmentController>().disabled = true;
         //first rotation is calculated manually as rotation amount needs to be halfed for the first turn.
@@ -111,10 +121,12 @@ public class Wheel : MonoBehaviour
             LevelLoader.SetProgress(LevelLoader.LoadProgress() + 1); //increment level progress 
             FindObjectOfType<Menu>().FadeInBlur(); //blur screen
             FindObjectOfType<Menu>().OpenResultsScreen(); //enable results screen
+            FindObjectOfType<Timer>().ToggleTimerRunning(false);
         }
         //if player has not completed the level
         else
         {
+            FindObjectOfType<FMODController>().ChangeAnswerState(0);
             FindObjectOfType<LevelLoader>().LoadLevelInformation(); //reset current level information
             FindObjectOfType<GameCanvas>().UpdateCanvasText(actionsRemaining, currentScore, targetScore); //update ui to show current level info has been reset.
             FindObjectOfType<GameCanvas>().ResetCurrentScore();
@@ -146,5 +158,11 @@ public class Wheel : MonoBehaviour
         {
             currentPortion = null;
         }
+    }
+
+
+    private void OnDestroy()
+    {
+        StopCoroutine(SpinCoroutine());
     }
 }

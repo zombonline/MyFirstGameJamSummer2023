@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -20,10 +21,29 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevel()
     {
         //all currently active wheels and segments are destroyed and then new ones loaded by accessing the current level using playerprefs.
+
+        FindObjectOfType<FMODController>().ChangeAnswerState(0);
+        ClearAllLevelPieces();
+        if (LoadProgress() > levels.Length-1)
+        {
+            FindObjectOfType<Menu>().OpenNoMoreLevelsScreen();
+            FindObjectOfType<FMODController>().ChangeMusicState(2);
+        }
+        else
+        {
+            Invoke(nameof(SpawnWheel), .1f);
+            Invoke(nameof(SpawnSegments), .1f);
+            FindObjectOfType<Menu>().LoadHint(levels[LoadProgress()].hint);
+            FindObjectOfType<Menu>().OpenHintScreen();
+        }
+    }
+
+    public void ReloadLevel()
+    {
+        FindObjectOfType<SegmentController>().disabled = false;
         ClearAllLevelPieces();
         Invoke(nameof(SpawnWheel), .1f);
         Invoke(nameof(SpawnSegments), .1f);
-        FindObjectOfType<Menu>().LoadHint(levels[LevelLoader.LoadProgress()].hint);
     }
 
     private void SpawnSegments()
@@ -74,6 +94,11 @@ public class LevelLoader : MonoBehaviour
         FindObjectOfType<Wheel>().actionsRemaining = levels[LoadProgress()].actions;
         FindObjectOfType<Wheel>().currentScore = 0;
         FindObjectOfType<Wheel>().targetScore = levels[LoadProgress()].targetScore;
+    }
+
+    public static void IncrementProgress()
+    {
+        PlayerPrefs.SetInt(PROGRESS, LoadProgress() + 1);
     }
 
     public static void SetProgress(int level)
