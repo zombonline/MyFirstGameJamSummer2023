@@ -143,7 +143,11 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
+<<<<<<< HEAD:Assets/Prefabs/Segment.prefab
     oldSize: {x: 3.4, y: 3.19}
+=======
+    oldSize: {x: 3.475, y: 3.28}
+>>>>>>> origin/main:Assets/Segment.prefab
     newSize: {x: 3.475, y: 3.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -245,7 +249,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
+<<<<<<< HEAD:Assets/Prefabs/Segment.prefab
     oldSize: {x: 3.4, y: 3.19}
+=======
+    oldSize: {x: 3.475, y: 3.28}
+>>>>>>> origin/main:Assets/Segment.prefab
     newSize: {x: 3.475, y: 3.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -40,7 +40,10 @@ public class LevelLoader : MonoBehaviour
 
     public void ReloadLevel()
     {
+<<<<<<< HEAD
         FindObjectOfType<FMODController>().ChangeAnswerState(0);
+=======
+>>>>>>> origin/main
         FindObjectOfType<SegmentController>().disabled = false;
         ClearAllLevelPieces();
         Invoke(nameof(SpawnWheel), .1f);

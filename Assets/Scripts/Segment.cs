@@ -47,12 +47,15 @@ public class Segment : MonoBehaviour
 
     }
 
+<<<<<<< HEAD:Assets/Scripts/Segment.cs
     public void UpdateSpriteLayer(string layer)
     {
         sliceSpriteRenderer.sortingLayerName = layer;
         valueSpriteRenderer.sortingLayerName = layer;
     }
 
+=======
+>>>>>>> origin/main:Assets/Segment.cs
     private void AssignValueSpriteRendererSize()
     {
         switch (FindObjectOfType<Wheel>().portions)
