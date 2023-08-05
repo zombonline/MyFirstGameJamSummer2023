@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652a7ec84a0bdde43af46b0312e2e73b, type: 3}
   m_Name: Level 7
   m_EditorClassIdentifier: 
-  targetScore: 6
+  targetScore: 4
   actions: 7
   segments:
   - powerType: 4

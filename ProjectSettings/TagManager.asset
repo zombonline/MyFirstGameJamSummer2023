@@ -42,3 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Wheel
+    uniqueID: 2934561849
+    locked: 0
+  - name: Hotbar
+    uniqueID: 2567487253
+    locked: 0
+  - name: PlacedSegment
+    uniqueID: 549360673
+    locked: 0
+  - name: SpinButton
+    uniqueID: 2507193341
+    locked: 0
+  - name: HeldSegment
+    uniqueID: 3124657751
+    locked: 0
